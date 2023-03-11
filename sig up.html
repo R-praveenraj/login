@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="loginpage.css"> -->
+    <title>Login page in HTML</title>
+</head>
+<body>
+    <div align="center">
+    <h1 align="center">Login form using PHP</h1>
+    <form name="f1">
+        <!-- Headings for the form -->
+        <div class="headingsContainer">
+            <h3>Sign in</h3>
+            <p>Sign in with your username and password</p>
+        </div>
+
+        <!-- Main container for all inputs -->
+        <div class="mainContainer">
+            <!-- Username -->
+            <label for="username">Your username</label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+
+            <br><br>
+
+            <!-- Password -->
+            <label for="pswrd">Your password</label>
+            <input type="password" placeholder="Enter Password" name="pswrd" required>
+
+            <br>
+
+            <!-- Submit button -->
+             <input type="button" value="Login" onclick="loadDoc()">
+
+            <!-- Sign up link -->
+            <p class="register">Not a member?  <a href="#">Register here!</a></p>
+            <p id="content"></p>
+        </div>
+    </div>
+
+    </form>
+</body>
+
+<SCRIPT>
+     function loadDoc(){
+        var email = f1.username.value;
+        console.log(email);
+        var xhttp=new XMLHttpRequest();
+        xhttp.open("GET","http://localhost/ajax/users.php?username=" + email,true);
+        xhttp.send();
+        xhttp.onreadystatechange=function(){
+            if(this.readyState==4 && this.status==200){
+                console.log(this.responseText);
+                document.getElementById("content").innerHTML=this.responseText;
+
+            }
+        };
+     }
+</SCRIPT>
+</html>
+
